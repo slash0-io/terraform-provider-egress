@@ -1,0 +1,16 @@
+# Build output
+bin/
+/terraform-provider-egress
+*.test
+
+# Terraform (examples/dev)
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+crash.log
+
+# Editors/OS
+.DS_Store
+.idea/
+.vscode/
