@@ -35,6 +35,8 @@ The catalog records two things most sources don't model:
 | `egress_ranges` | Current ranges for one service purpose (`stripe`/`api`, `github`/`hooks`, `datadog`/`agents`, …) |
 | `egress_services` | The full catalog: slugs, purposes, directions, classifications |
 
+**→ [Browse the service catalog](https://github.com/egresshq/feed/blob/main/CATALOG.md)** for every available slug and purpose, or visit the [feed's landing page](https://egresshq.github.io/feed/).
+
 Provider configuration: `feed_url` (optional) — defaults to the `EGRESS_FEED_URL` environment variable, then the public feed. `file://` URLs are supported for air-gapped or vendored feeds.
 
 ## Staying current

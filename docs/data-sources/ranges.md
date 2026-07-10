@@ -24,11 +24,11 @@ resource "aws_security_group_rule" "stripe_egress" {
 
 ### Required
 
-- `service` (String) Service slug, e.g. `stripe`. Enumerate with `egress_services`.
+- `service` (String) Service slug, e.g. `stripe`. See the [service catalog](https://github.com/egresshq/feed/blob/main/CATALOG.md) for all available slugs, or enumerate with `egress_services`.
 
 ### Optional
 
-- `purpose` (String) Purpose key, e.g. `api` or `webhooks`. May be omitted only when the service publishes exactly one purpose.
+- `purpose` (String) Purpose key, e.g. `api` or `webhooks` — each service's purposes are listed in the [catalog](https://github.com/egresshq/feed/blob/main/CATALOG.md). May be omitted only when the service publishes exactly one purpose.
 
 ### Read-Only
 
