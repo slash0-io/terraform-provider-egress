@@ -39,4 +39,6 @@ resource "aws_security_group_rule" "stripe_egress" {
 - `classification` (String) `dedicated` | `mixed` | `cdn-shared`.
 - `name` (String) Human-readable service name.
 - `sync_token` (String) Feed sync token at generation time.
+
+~> Every CIDR consumes one security-group rule (default quota: 60 per SG, IPv4/IPv6 counted separately). Ranges are losslessly aggregated — coverage is never widened. Check a purpose's entry counts in the [catalog](https://github.com/egresshq/feed/blob/main/CATALOG.md) or via `egress_services` before wiring large purposes into SGs; 1,000+ entry purposes belong in firewall rule groups, not security groups.
 - `generated_at` (String) Feed generation timestamp (RFC 3339).

@@ -27,21 +27,25 @@ type servicesModel struct {
 }
 
 type serviceEntryModel struct {
-	Slug           types.String       `tfsdk:"slug"`
-	Name           types.String       `tfsdk:"name"`
-	Category       types.String       `tfsdk:"category"`
-	Classification types.String       `tfsdk:"classification"`
+	Slug           types.String        `tfsdk:"slug"`
+	Name           types.String        `tfsdk:"name"`
+	Category       types.String        `tfsdk:"category"`
+	Classification types.String        `tfsdk:"classification"`
 	Purposes       []purposeEntryModel `tfsdk:"purposes"`
 }
 
 type purposeEntryModel struct {
 	Key       types.String `tfsdk:"key"`
 	Direction types.String `tfsdk:"direction"`
+	IPv4Count types.Int64  `tfsdk:"ipv4_count"`
+	IPv6Count types.Int64  `tfsdk:"ipv6_count"`
 }
 
 var purposeObjType = types.ObjectType{AttrTypes: map[string]attr.Type{
-	"key":       types.StringType,
-	"direction": types.StringType,
+	"key":        types.StringType,
+	"direction":  types.StringType,
+	"ipv4_count": types.Int64Type,
+	"ipv6_count": types.Int64Type,
 }}
 
 var serviceObjType = types.ObjectType{AttrTypes: map[string]attr.Type{
@@ -74,6 +78,10 @@ func (d *servicesDataSource) Schema(_ context.Context, _ datasource.SchemaReques
 								Attributes: map[string]schema.Attribute{
 									"key":       schema.StringAttribute{Computed: true},
 									"direction": schema.StringAttribute{Computed: true},
+									"ipv4_count": schema.Int64Attribute{Computed: true,
+										Description: "Number of IPv4 CIDRs — the SG-rule quota cost of this purpose."},
+									"ipv6_count": schema.Int64Attribute{Computed: true,
+										Description: "Number of IPv6 CIDRs (IPv4/IPv6 SG quotas are separate)."},
 								},
 							},
 						},
@@ -117,6 +125,8 @@ func (d *servicesDataSource) Read(ctx context.Context, _ datasource.ReadRequest,
 			e.Purposes = append(e.Purposes, purposeEntryModel{
 				Key:       types.StringValue(p.Key),
 				Direction: types.StringValue(p.Direction),
+				IPv4Count: types.Int64Value(int64(p.IPv4Count)),
+				IPv6Count: types.Int64Value(int64(p.IPv6Count)),
 			})
 		}
 		entries = append(entries, e)
