@@ -39,7 +39,7 @@ Provider configuration: `feed_url` (optional) — defaults to the `EGRESS_FEED_U
 
 ## Staying current
 
-Terraform data sources refresh only at `plan`/`apply` time. If you apply infrequently, pair the provider with scheduled applies — or don't manage the drift yourself: the hosted tier keeps AWS-native managed prefix lists continuously updated and shared into your account, with staged rollouts and change notifications. *(In development.)*
+Terraform data sources refresh only at `plan`/`apply` time. If you apply infrequently, pair the provider with scheduled applies — or don't manage the drift yourself: the hosted tier keeps AWS-native managed prefix lists continuously updated and shared into your account via AWS RAM, with staged rollouts and change notifications. It's in development with design partners — [**request early access**](https://github.com/egresshq/terraform-provider-egress/issues/new?template=early-access.yml).
 
 ## Development
 

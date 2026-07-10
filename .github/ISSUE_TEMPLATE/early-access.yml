@@ -1,0 +1,37 @@
+name: "Early access: managed prefix lists"
+description: "The hosted tier: these ranges as AWS-managed prefix lists, kept current in your account — no plan/apply required."
+title: "Early access request"
+labels: ["early-access"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The hosted tier keeps AWS customer-managed prefix lists continuously updated and
+        shared into your account via AWS RAM — reference `pl-xxxx` in a security group rule
+        and you're done. Staged rollouts, change notifications, and audit-ready change history.
+        Tell us a little about your setup and we'll reach out as design-partner slots open.
+  - type: input
+    id: services
+    attributes:
+      label: Which services do you allowlist (or want to)?
+      placeholder: "e.g. Stripe, Datadog agents, GitHub webhooks"
+    validations:
+      required: true
+  - type: input
+    id: regions
+    attributes:
+      label: AWS regions in use
+      placeholder: "e.g. us-east-1, eu-west-1"
+  - type: dropdown
+    id: driver
+    attributes:
+      label: What's driving this?
+      options:
+        - Compliance (PCI DSS / SOC 2 / other audit)
+        - Data-exfiltration / egress lockdown
+        - Replacing hand-maintained IP rules
+        - Other
+  - type: input
+    id: contact
+    attributes:
+      label: Best contact (email), if different from your GitHub profile
