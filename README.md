@@ -1,6 +1,6 @@
 # terraform-provider-egress
 
-Terraform data sources for the published IP ranges of third-party services — Stripe, GitHub, Datadog, Okta, Cloudflare, and 25+ more — so `0.0.0.0/0` never has to appear in your egress rules again.
+Terraform data sources for the published IP ranges of third-party services — Stripe, GitHub, Datadog, Okta, Cloudflare, and 40+ more — so `0.0.0.0/0` never has to appear in your egress rules again.
 
 ```hcl
 data "egress_ranges" "stripe_api" {
