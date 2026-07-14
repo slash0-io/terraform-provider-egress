@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/egresshq/terraform-provider-egress/internal/feedschema"
+	"github.com/slash0-io/terraform-provider-egress/internal/feedschema"
 )
 
 const maxFeedBytes = 32 << 20

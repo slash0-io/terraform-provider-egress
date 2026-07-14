@@ -1,4 +1,4 @@
-module github.com/egresshq/terraform-provider-egress
+module github.com/slash0-io/terraform-provider-egress
 
 go 1.26.4
 

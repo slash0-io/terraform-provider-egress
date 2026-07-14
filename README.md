@@ -6,7 +6,7 @@ Terraform data sources for the published IP ranges of third-party services — S
 terraform {
   required_providers {
     egress = {
-      source  = "egresshq/egress"
+      source  = "slash0-io/egress"
       version = "~> 0.1"
     }
   }
@@ -30,7 +30,7 @@ resource "aws_security_group_rule" "stripe_egress" {
 
 ## How it works
 
-The provider reads a **versioned public feed** ([egresshq/feed](https://github.com/egresshq/feed)) rebuilt continuously from each vendor's *official* publication — never from third-party aggregators. Every service document carries a provenance chain: the upstream URL, retrieval timestamp, and the SHA-256 of the upstream body it was derived from.
+The provider reads a **versioned public feed** ([slash0-io/feed](https://github.com/slash0-io/feed)) rebuilt continuously from each vendor's *official* publication — never from third-party aggregators. Every service document carries a provenance chain: the upstream URL, retrieval timestamp, and the SHA-256 of the upstream body it was derived from.
 
 The catalog records two things most sources don't model:
 
@@ -44,13 +44,13 @@ The catalog records two things most sources don't model:
 | `egress_ranges` | Current ranges for one service purpose (`stripe`/`api`, `github`/`hooks`, `datadog`/`agents`, …) |
 | `egress_services` | The full catalog: slugs, purposes, directions, classifications |
 
-**→ [Browse the service catalog](https://github.com/egresshq/feed/blob/main/CATALOG.md)** for every available slug and purpose, or visit the [feed's landing page](https://egresshq.github.io/feed/).
+**→ [Browse the service catalog](https://github.com/slash0-io/feed/blob/main/CATALOG.md)** for every available slug and purpose, or visit the [feed's landing page](https://feed.slash0.io/).
 
 Provider configuration: `feed_url` (optional) — defaults to the `EGRESS_FEED_URL` environment variable, then the public feed. `file://` URLs are supported for air-gapped or vendored feeds.
 
 ## Security-group quota reality
 
-Every CIDR in a rule consumes one security-group rule — default quota **60 per SG**, IPv4 and IPv6 counted separately, and `rules × SGs-per-ENI ≤ 1000` caps how far increases go. The [catalog](https://github.com/egresshq/feed/blob/main/CATALOG.md), the [feed landing page](https://egresshq.github.io/feed/), and `egress_services` (`ipv4_count`/`ipv6_count`) publish each purpose's entry count so you know the cost *before* wiring it in.
+Every CIDR in a rule consumes one security-group rule — default quota **60 per SG**, IPv4 and IPv6 counted separately, and `rules × SGs-per-ENI ≤ 1000` caps how far increases go. The [catalog](https://github.com/slash0-io/feed/blob/main/CATALOG.md), the [feed landing page](https://feed.slash0.io/), and `egress_services` (`ipv4_count`/`ipv6_count`) publish each purpose's entry count so you know the cost *before* wiring it in.
 
 Ranges are **losslessly aggregated**: published coverage is preserved exactly, never widened. There is deliberately no supernet "summarization" option — overshoot space inside shared cloud ranges is rentable by anyone with a credit card, which would turn an allowlist into an attack surface.
 
@@ -62,7 +62,7 @@ Patterns by scale:
 
 ## Staying current
 
-Terraform data sources refresh only at `plan`/`apply` time. If you apply infrequently, pair the provider with scheduled applies — or don't manage the drift yourself: the hosted tier keeps AWS-native managed prefix lists continuously updated and shared into your account via AWS RAM, with staged rollouts and change notifications. It's in development with design partners — [**request early access**](https://github.com/egresshq/terraform-provider-egress/issues/new?template=early-access.yml).
+Terraform data sources refresh only at `plan`/`apply` time. If you apply infrequently, pair the provider with scheduled applies — or don't manage the drift yourself: the hosted tier keeps AWS-native managed prefix lists continuously updated and shared into your account via AWS RAM, with staged rollouts and change notifications. It's in development with design partners — [**request early access**](https://github.com/slash0-io/terraform-provider-egress/issues/new?template=early-access.yml).
 
 ## Development
 
@@ -71,9 +71,9 @@ go build -o bin/terraform-provider-egress .
 go test ./...
 ```
 
-To run [examples/basic](examples/basic) against a local feed: build a feed with the [generator](https://github.com/egresshq/feed), point a `dev_overrides` CLI config at `bin/`, and set `EGRESS_FEED_URL=file:///path/to/dist/v1`.
+To run [examples/basic](examples/basic) against a local feed: build a feed with the [generator](https://github.com/slash0-io/feed), point a `dev_overrides` CLI config at `bin/`, and set `EGRESS_FEED_URL=file:///path/to/dist/v1`.
 
-The feed schema in `internal/feedschema` is a vendored copy of the canonical definition in [egresshq/feed](https://github.com/egresshq/feed); schema v1 is frozen (additive changes only).
+The feed schema in `internal/feedschema` is a vendored copy of the canonical definition in [slash0-io/feed](https://github.com/slash0-io/feed); schema v1 is frozen (additive changes only).
 
 ## License
 

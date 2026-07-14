@@ -2,7 +2,7 @@
 
 Data sources for the published IP ranges of third-party services (Stripe, GitHub, Datadog, Okta, …), backed by a versioned public feed built exclusively from each vendor's official publication.
 
-**Available services:** browse the [service catalog](https://github.com/egresshq/feed/blob/main/CATALOG.md) for every service slug, its purposes (`api`, `webhooks`, `agents`, …), traffic direction, and classification — or enumerate them in Terraform with the `egress_services` data source.
+**Available services:** browse the [service catalog](https://github.com/slash0-io/feed/blob/main/CATALOG.md) for every service slug, its purposes (`api`, `webhooks`, `agents`, …), traffic direction, and classification — or enumerate them in Terraform with the `egress_services` data source.
 
 ## Example Usage
 

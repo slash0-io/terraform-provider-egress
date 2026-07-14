@@ -1,5 +1,5 @@
 // Package feedschema is a vendored copy of the canonical schema in
-// github.com/egresshq/feed/feedschema. Schema v1 is frozen: additive changes
+// github.com/slash0-io/feed/feedschema. Schema v1 is frozen: additive changes
 // only. Keep in sync when the feed repo revs the schema.
 package feedschema
 

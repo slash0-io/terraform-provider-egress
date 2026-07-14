@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     egress = {
-      source = "egresshq/egress"
+      source = "slash0-io/egress"
     }
   }
 }

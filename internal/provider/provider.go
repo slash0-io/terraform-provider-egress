@@ -13,7 +13,7 @@ import (
 
 // DefaultFeedURL is the public feed. Overridable via the feed_url provider
 // attribute or the EGRESS_FEED_URL environment variable (attribute wins).
-const DefaultFeedURL = "https://egresshq.github.io/feed/v1"
+const DefaultFeedURL = "https://feed.slash0.io/v1"
 
 var _ provider.Provider = (*egressProvider)(nil)
 

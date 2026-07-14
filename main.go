@@ -9,7 +9,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 
-	"github.com/egresshq/terraform-provider-egress/internal/provider"
+	"github.com/slash0-io/terraform-provider-egress/internal/provider"
 )
 
 // version is set by goreleaser at build time.
@@ -21,7 +21,7 @@ func main() {
 	flag.Parse()
 
 	err := providerserver.Serve(context.Background(), provider.New(version), providerserver.ServeOpts{
-		Address: "registry.terraform.io/egresshq/egress",
+		Address: "registry.terraform.io/slash0-io/egress",
 		Debug:   debug,
 	})
 	if err != nil {
