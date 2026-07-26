@@ -1,5 +1,5 @@
 name: "Early access: managed prefix lists"
-description: "The hosted tier: these ranges as AWS-managed prefix lists, kept current in your account — no plan/apply required."
+description: "The hosted tier: these ranges as AWS-managed prefix lists, kept current in your account, with no plan/apply required."
 title: "Early access request"
 labels: ["early-access"]
 body:
@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         The hosted tier keeps AWS customer-managed prefix lists continuously updated and
-        shared into your account via AWS RAM — reference `pl-xxxx` in a security group rule
+        shared into your account via AWS RAM, so you reference `pl-xxxx` in a security group rule
         and you're done. Staged rollouts, change notifications, and audit-ready change history.
         Tell us a little about your setup and we'll reach out as design-partner slots open.
   - type: input

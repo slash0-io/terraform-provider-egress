@@ -28,17 +28,17 @@ resource "aws_security_group_rule" "stripe_egress" {
 
 ### Optional
 
-- `purpose` (String) Purpose key, e.g. `api` or `webhooks` — each service's purposes are listed in the [catalog](https://github.com/slash0-io/feed/blob/main/CATALOG.md). May be omitted only when the service publishes exactly one purpose.
+- `purpose` (String) Purpose key, e.g. `api` or `webhooks`. Each service's purposes are listed in the [catalog](https://github.com/slash0-io/feed/blob/main/CATALOG.md). May be omitted only when the service publishes exactly one purpose.
 
 ### Read-Only
 
 - `ipv4_cidrs` (List of String) Sorted IPv4 CIDRs.
 - `ipv6_cidrs` (List of String) Sorted IPv6 CIDRs.
 - `cidrs` (List of String) `ipv4_cidrs` followed by `ipv6_cidrs`.
-- `direction` (String) `egress` = ranges you connect to (SG egress rules); `ingress` = ranges the service connects from (webhook sources — SG ingress rules).
+- `direction` (String) `egress` = ranges you connect to (SG egress rules); `ingress` = ranges the service connects from (webhook sources, for SG ingress rules).
 - `classification` (String) `dedicated` | `mixed` | `cdn-shared`.
 - `name` (String) Human-readable service name.
 - `sync_token` (String) Feed sync token at generation time.
 
-~> Every CIDR consumes one security-group rule (default quota: 60 per SG, IPv4/IPv6 counted separately). Ranges are losslessly aggregated — coverage is never widened. Check a purpose's entry counts in the [catalog](https://github.com/slash0-io/feed/blob/main/CATALOG.md) or via `egress_services` before wiring large purposes into SGs; 1,000+ entry purposes belong in firewall rule groups, not security groups.
+~> Every CIDR consumes one security-group rule (default quota: 60 per SG, IPv4/IPv6 counted separately). Ranges are losslessly aggregated, so coverage is never widened. Check a purpose's entry counts in the [catalog](https://github.com/slash0-io/feed/blob/main/CATALOG.md) or via `egress_services` before wiring large purposes into SGs; 1,000+ entry purposes belong in firewall rule groups, not security groups.
 - `generated_at` (String) Feed generation timestamp (RFC 3339).
